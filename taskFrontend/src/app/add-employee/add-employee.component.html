@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">New Employee</h4>
+                            <p class="card-category">New Employee is being added</p>
+                        </div>
+                        <div class="card-body">
+                            <form class="example-form" (ngSubmit)="onclickAdd()" #f="ngForm">
+                                <div class="rows">
+
+
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="First Name" (keypress)="keyPressText($event)"
+                                            ngModel #Employee_fname="ngModel" required [(ngModel)]="firstName" name="fName">
+                                        <mat-error *ngIf="Employee_fname?.hasError('required')">
+                                            First Name is Required
+                                        </mat-error>
+                                    </mat-form-field>
+
+
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Last Name" (keypress)="keyPressText($event)"
+                                            ngModel #Employee_lname="ngModel" required [(ngModel)]="lastName"
+                                            name="lName">
+                                        <mat-error *ngIf="Employee_lname?.hasError('required')">
+                                            Last Name is Required
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Designation" (keypress)="keyPressText($event)"
+                                            ngModel #Employee_designation="ngModel" required [(ngModel)]="designation"
+                                            name="Designation">
+                                        <mat-error *ngIf="Employee_designation?.hasError('required')">
+                                            Designation is Required
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Address" name="Address" #ad="ngModel"
+                                            [(ngModel)]="address" required>
+                                        <mat-error *ngIf="ad.hasError('required')">
+                                            Address is required
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Email_id" type="text" [(ngModel)]="email"
+                                            name="Email_id" #id="ngModel" email required>
+                                        <mat-error *ngIf="id.hasError('email')">
+                                            Email is Invalid
+                                        </mat-error>
+                                        <mat-error *ngIf="id.hasError('required')">
+                                            Email is Required
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput #input="ngModel" [min]="minDate" [max]="maxDate"
+                                            [matDatepicker]="picker" name="DOB1" [(ngModel)]="DOB"
+                                            placeholder="Date of birth">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Select Department" required #Department="ngModel"
+                                            name="Select_Department" [(ngModel)]="departmentId" class="example-full-width">
+                                            <mat-option *ngFor="let item of arr_department" [value]="item.id">
+                                                {{item.departmentName}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <!-- <mat-error *ngIf="Select_Department.hasError('required')">
+                                            Department Must be selected
+                                        </mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                                <div class="rows">
+                                    <button mat-raised-button type="submit" [disabled]="!f.valid" class="btn">Add
+                                        Employee</button>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <button mat-raised-button color="warn" (click)="onclickCancle()">CANCEL</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
